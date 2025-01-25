@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace DMS.Repositories.Interfaces
 {
-    public interface IGenericRepository
+    public interface IGenericRepository<T> 
     {
+        Task<T> GetByIdAsync(int id);
+        Task AddAsync(T entity);
+        Task UpdateAsync(T entity);
+        Task DeleteAsync(int id);
+
+
     }
 }
