@@ -15,4 +15,9 @@
     </PackageReference>
   </ItemGroup>
 
+
+	<ItemGroup>
+		<ProjectReference Include="..\DMS.Models\DMS.Models.csproj" />
+	</ItemGroup>
+
 </Project>

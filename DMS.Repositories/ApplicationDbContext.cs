@@ -5,12 +5,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DMS.Models;
+
 
 namespace DMS.Repositories
 {
     public class ApplicationDbContext : IdentityDbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { 
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) 
+        { 
         }
+        public DbSet<ApplicationUser> ApplicationUser { get; set; }
+        
     }
 }
