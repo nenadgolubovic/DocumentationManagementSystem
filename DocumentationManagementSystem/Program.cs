@@ -1,6 +1,11 @@
 using DMS.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using DMS.Utilities;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
+using Humanizer;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
+using static System.Net.Mime.MediaTypeNames;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +27,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
 app.UseRouting();
 
 app.UseAuthorization();
@@ -35,3 +41,19 @@ app.MapControllerRoute(
 
 
 app.Run();
+
+//Initialize data 
+void DataSedding() 
+{
+    //Create scope - resourse which is not used are automatically released after the method completes.
+    using (var scope = app.Services.CreateScope())
+    {
+        
+        var dbInitializer = scope.ServiceProvider.
+            //Get from IDbInitializer
+            GetRequiredService<IDbInitializer>();
+        dbInitializer.Initialize();
+
+    }
+}
+
