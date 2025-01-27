@@ -6,6 +6,8 @@ using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
 using Humanizer;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 using static System.Net.Mime.MediaTypeNames;
+using DMS.Repositories.Interfaces;
+using DMS.Repositories.Implementation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +18,10 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectio
 
 builder.Services.AddIdentity<IdentityUser,IdentityRole>().
     AddEntityFrameworkStores<ApplicationDbContext>();
+
+builder.Services.AddScoped<IDbInitializer, DbInitializer>();
+builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
+
 
 var app = builder.Build();
 
