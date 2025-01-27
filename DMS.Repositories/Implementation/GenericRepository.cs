@@ -9,6 +9,13 @@ namespace DMS.Repositories.Implementation
 {
     public class GenericRepository<T> : IGenericRepository<T>
     {
+        private ApplicationDbContext context;
+
+        public GenericRepository(ApplicationDbContext context)
+        {
+            this.context = context;
+        }
+
         public Task AddAsync(T entity)
         {
             throw new NotImplementedException();
