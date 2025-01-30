@@ -15,7 +15,12 @@ namespace DMS.Repositories
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) 
         { 
         }
-        public DbSet<ApplicationUser> ApplicationUser { get; set; }
-        
+        public DbSet<Component> Component { get; set; }
+        public DbSet<Document> Document { get; set; }
+        public DbSet<Engine> Engine { get; set; }
+        public DbSet<Supplier> Supplier { get; set; }
+        public DbSet<Vendor> Vendor { get; set; }
+
+
     }
 }
