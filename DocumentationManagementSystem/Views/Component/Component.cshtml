@@ -1,0 +1,78 @@
+﻿@using DMS.Models
+@model List<Component>
+
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <title>Component - Imput of Components</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h1 class="mb-4">List of Components</h1>
+
+        <!-- Dugme za otvaranje modalnog prozora -->
+        <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addPartModal">
+            Insert new component
+        </button>
+
+        <!-- Tabela sa unetim delovima -->
+        <table class="table table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var component in Model)
+                {
+                    <tr>
+                        <td>@component.Id</td>
+                        <td>@component.Name</td>
+                        <td>@component.Description</td>
+                        <td>@component.Type</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="modal fade" id="addPartModal" tabindex="-1" aria-labelledby="addPartModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addPartModalLabel">Add new component</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" asp-action="AddComponent">
+                        <div class="mb-3">
+                            <label class="form-label">Name of component:</label>
+                            <input type="text" name="name" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Description of component:</label>
+                            <input type="text" name="desctiption" class="form-control" min="1" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Type of component:</label>
+                            <input type="text" name="type" class="form-control" min="1" required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success">Save</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

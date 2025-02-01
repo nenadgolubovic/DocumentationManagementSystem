@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DMS.Utilities\DMS.Utilities.csproj" />
+    <ProjectReference Include="..\DMS.ViewModels\DMS.ViewModels.csproj" />
+  </ItemGroup>
+
 </Project>
