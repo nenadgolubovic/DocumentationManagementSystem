@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DMS.Repositories.Implementation
 {
-    public class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork, IDisposable
     {
         private readonly ApplicationDbContext _context;
 
@@ -16,7 +16,9 @@ namespace DMS.Repositories.Implementation
         {
             _context = context;
         } 
-        public UnitOfWork() { }
+        public UnitOfWork() 
+        { 
+        }
 
 
 
@@ -31,6 +33,11 @@ namespace DMS.Repositories.Implementation
         public void Save()
         {
             _context.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+            _context.Dispose();
         }
     }
 }
