@@ -30,6 +30,39 @@ namespace DocumentationManagementSystem.Controllers
             return View(components);
         }
 
+        public IActionResult Search(string nameSearch, string descriptionSearch, string typeSearch)
+        {
+            var components = _context.Component.AsQueryable();
+
+            if (string.IsNullOrEmpty(nameSearch) && string.IsNullOrEmpty(descriptionSearch) && string.IsNullOrEmpty(typeSearch))
+            {
+                components = _context.Component;  
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(nameSearch))
+                {
+                    components = components.Where(c => c.Name.Contains(nameSearch));
+                }
+                if (!string.IsNullOrEmpty(descriptionSearch))
+                {
+                    components = components.Where(c => c.Description.Contains(descriptionSearch));
+                }
+                if (!string.IsNullOrEmpty(typeSearch))
+                {
+                    components = components.Where(c => c.Type.Contains(typeSearch));
+                }
+            }
+            var result = components.ToList();
+
+            if (!result.Any())
+            {
+                return View("Component", new List<Component>());
+            }
+
+            return View("Component", result);
+        }
+
 
 
         [HttpPost]

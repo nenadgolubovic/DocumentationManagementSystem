@@ -14,13 +14,35 @@
     <div class="container mt-5">
         <h1 class="mb-4">List of Components</h1>
 
-        <!-- Dugme za otvaranje modalnog prozora -->
+
         <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addPartModal">
             Insert new component
         </button>
 
-        <!-- Tabela sa unetim delovima -->
-        <table class="table table-bordered">
+
+
+        <form method="get" asp-action="Search">
+            <div class="row mb-3 d-flex align-items-center">
+                <div class="col">
+                    <input type="text" class="form-control" name="nameSearch" placeholder="Search by Name" />
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" name="descriptionSearch" placeholder="Search by Description" />
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" name="typeSearch" placeholder="Search by Type" />
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </form>
+
+
+
+
+
+        <table class="table table-bordered" id="productTable">
             <thead class="table-dark">
                 <tr>
                     <th>ID</th>
