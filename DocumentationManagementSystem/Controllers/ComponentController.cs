@@ -1,12 +1,21 @@
 ﻿using DMS.Models;
+using DMS.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using SQLitePCL;
 using System.IO;
+using DMS.Repositories;
+using System;
 
 namespace DocumentationManagementSystem.Controllers
 {
     public class ComponentController : Controller
     {
-        private static List<Component> component = new List<Component>();
+        private readonly ApplicationDbContext _context;
+        public ComponentController(ApplicationDbContext context)
+        {
+            _context = context ?? throw new ArgumentNullException(nameof(context));
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -17,18 +26,26 @@ namespace DocumentationManagementSystem.Controllers
         }
         public IActionResult Component()
         {
-            return View(component);
+            var components = _context.Component.ToList(); 
+            return View(components);
         }
+
 
 
         [HttpPost]
 
-        public IActionResult AddComponent(int id, string desctiption, string name, string type) 
+        public IActionResult AddComponent(ComponentViewModel model) 
         {
-            if (!string.IsNullOrEmpty(name))
+            if (!string.IsNullOrEmpty(model.Name))
             {
-                var newComponent = new Component { Id = component.Count + 1, Name = name, Description = desctiption, Type = type };
-                component.Add(newComponent);
+                var newComponent = new Component
+                {
+                    Name = model.Name,
+                    Description = model.Description,
+                    Type = model.Type
+                };
+                _context.Component.Add(newComponent);
+                _context.SaveChanges();
             }
             return RedirectToAction("Component");
         }

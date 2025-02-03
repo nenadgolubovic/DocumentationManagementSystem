@@ -1,5 +1,5 @@
 ﻿@using DMS.Models
-@model List<Component>
+@model List<DMS.Models.Component>
 
 <!DOCTYPE html>
 <html lang="sr">
@@ -54,15 +54,15 @@
                     <form method="post" asp-action="AddComponent">
                         <div class="mb-3">
                             <label class="form-label">Name of component:</label>
-                            <input type="text" name="name" class="form-control" required>
+                            <input type="text" name="Name" class="form-control" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Description of component:</label>
-                            <input type="text" name="desctiption" class="form-control" min="1" required>
+                            <input type="text" name="Description" class="form-control" min="1" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Type of component:</label>
-                            <input type="text" name="type" class="form-control" min="1" required>
+                            <input type="text" name="Type" class="form-control" min="1" required>
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-success">Save</button>

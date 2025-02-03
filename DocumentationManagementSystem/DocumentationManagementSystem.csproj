@@ -20,6 +20,7 @@
       <ProjectReference Include="..\DMS.Repositories\DMS.Repositories.csproj" />
 		<ProjectReference Include="..\DMS.Models\DMS.Models.csproj" />
       <ProjectReference Include="..\DMS.Utilities\DMS.Utilities.csproj" />
+      <ProjectReference Include="..\DMS.ViewModels\DMS.ViewModels.csproj" />
     </ItemGroup>
     <ItemGroup>
       <Folder Include="Areas\Admin\Controllers\" />
